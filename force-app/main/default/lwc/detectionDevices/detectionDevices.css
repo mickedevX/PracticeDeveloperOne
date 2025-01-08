@@ -1,0 +1,12 @@
+.main-container{
+    display: flex;
+    margin-top: 40px;
+    margin-left: 240px;
+    width: 100px;
+    height: 100px;
+    /* border: 1px red solid; */
+}
+
+img{
+    height: 40px;
+}

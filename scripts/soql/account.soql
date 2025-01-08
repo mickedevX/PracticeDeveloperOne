@@ -1,0 +1,93 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-04-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Componente o clase apex ...
+ **/
+// Use .soql files to store SOQL queries.
+// You can execute queries in VS Code by selecting the
+//     query text and running the command:
+//     SFDX: Execute SOQL Query with Currently Selected Text
+
+//?Ejemplos de SOQL:
+// SELECT Id, Name FROM Account
+
+//?Ejemplos de la clase DescribeSObjectResult - propiedad SObjectType:
+List<String> s = new List<String>{'Account', 'Contact', 'Opportunity', 'Case', 'Lead'};
+List<Schema.DescribeSObjectResult> d = Schema.describeSObjects(s);
+for (Schema.DescribeSObjectResult resultado : d) {
+    System.debug('Imprimiendo usando el método getLabel()>>>> '+resultado.getLabel());
+}
+Schema.DescribeSObjectResult dsr = Opportunity.SObjectType.getDescribe();
+System.debug('Imprime el objeto dsr:>>>> '+dsr);
+System.debug('Imprime el método getName>>>: '+dsr.getName());
+System.debug('Imprime el método getSObjectType>>>: '+dsr.getSObjectType());
+System.debug('Imprime el método getLabel>>>: '+dsr.getLabel());
+
+Schema.DescribeSObjectResult dsr = Schema.SObjectType.Opportunity;
+System.debug('Imprime el objeto dsr:>>>> '+dsr);
+System.debug('Imprime el método getName>>>: '+dsr.getName());
+
+
+//?Ejemplos de la clase DescribeSObjectResult - propiedad recordTypeInfosByName:
+String myObject = 'Opportunity';
+Schema.DescribeSObjectResult d = Schema.getGlobalDescribe().get(myObject).getDescribe();
+Map<String, Schema.RecordTypeInfo> mapRecordTypeInfos = d.getRecordTypeInfosByName();
+for(String keyOfRecordType : mapRecordTypeInfos.keySet()) {
+    System.debug('Imprimir keyOfRecordType: '+keyOfRecordType);
+    Schema.RecordTypeInfo recordTypeInfo = mapRecordTypeInfos.get(keyOfRecordType);
+    System.debug('Imprimir recordTypeInfo: '+recordTypeInfo);
+    System.debug('Imprimir ID recordTypeInfo: '+recordTypeInfo.getRecordTypeId());
+    System.debug('Imprimir NAME recordTypeInfo: '+recordTypeInfo.getName());
+    System.debug('Imprimir developerName: '+recordTypeInfo.getDeveloperName());
+    System.debug('Esta activo? '+recordTypeInfo.isActive());
+    System.debug('Es predeterminado?: '+recordTypeInfo.isDefaultRecordTypeMapping());
+}
+
+//?Ejemplos de la clase DescribeSObjectResult - propiedad queryable:
+String myObject = 'Account';
+Schema.DescribeSObjectResult dsr01 = Schema.getGlobalDescribe().get(myObject).getDescribe();
+Schema.DescribeSObjectResult dsr02 = Case.SObjectType.getDescribe();
+System.debug('****** Imprime el resultado de la propiedad querable: '+dsr01.isQueryable());
+System.debug('****** Imprime el resultado de la propiedad querable: '+dsr02.isQueryable());
+
+
+//?Ejemplos de la clase DescribeSObjectResult - propiedad undeletable - propidad updateable:
+String myObject01 = 'Opportunity';
+String myObject02 = 'Contact';
+Schema.DescribeSObjectResult dsr01 = Schema.getGlobalDescribe().get(myObject01).getDescribe();
+Schema.DescribeSObjectResult dsr02 = Schema.getGlobalDescribe().get(myObject02).getDescribe();
+System.debug('****** Imprime el resultado de la propiedad updateable para '+myObject01+': '+dsr01.isUpdateable());
+System.debug('****** Imprime el resultado de la propiedad undeletable para '+myObject02+': '+dsr02.isUndeletable());
+
+
+Map<String, Schema.SObjectType> m = Schema.getGlobalDescribe();
+for(String s : m.keySet()) {
+    DescribeSObjectResult dsr = m.get(s).getDescribe();
+    System.debug('>>>>>'+dsr);
+    System.debug('>>>>>'+dsr.getName());
+    System.debug('>>>>>'+dsr.getSObjectType());
+}
+
+Map<String,Schema.SObjectType> m = Schema.getGlobalDescribe();
+DescribeSObjectResult dsr = m.get('Account').getDescribe();
+System.debug('>>>>>'+dsr);
+
+//?Aprendiendo de la clase RecordTypeInfo:
+Schema.DescribeSObjectResult dsr = Schema.SObjectType.Opportunity;
+Map<Id,Schema.RecordTypeInfo> map= dsr.getRecordTypeInfosById();
+System.debug('>>>>>Imprime todo: '+map);
+for(Id key : map.keySet()) {
+    Schema.RecordTypeInfo item = map.get(key);
+    System.debug('>>>>>'+item);
+}
+List<Schema.RecordTypeInfo> recordTypeInfos = dsr.getRecordTypeInfos();
+System.debug('>>>>>Imprime todo: '+recordTypeInfos);
+for (Schema.RecordTypeInfo variable : recordTypeInfos) {
+    System.debug('>>>>>'+variable.getDeveloperName());
+    System.debug('>>>>>'+variable.getName());
+    System.debug('>>>>>'+variable.getRecordTypeId());
+    System.debug('>>>>>'+variable.isDefaultRecordTypeMapping());
+}
+

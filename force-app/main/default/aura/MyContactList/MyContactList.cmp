@@ -1,0 +1,31 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 12-29-2024
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<aura:component controller="MyContactListController"
+                implements="flexipage:availableForRecordHome,force:hasRecordId"
+                access="global">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="Cuenta" type="Account" />
+    <aura:attribute name="Contactos" type="Contact" />
+    <aura:attribute name="Columnas" type="List" />
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.myActionToPractice}" />
+    <force:recordData aura:id="accountRecord"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.Cuenta}"
+                      layoutType="FULL"
+                      />
+    <lightning:card iconName="standard:contact"
+                    title="{! 'Lista de contactos para ' + v.Cuenta.Name}">
+        <!-- Contact list goes here -->
+        <lightning:datatable data="{! v.Contactos }"
+                            columns="{! v.Columnas }"
+                            keyField="Id"
+                            hideCheckboxColumn="true"/>
+    </lightning:card>
+</aura:component>
