@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 01-04-2025
+ * @last modified on  : 01-07-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Componente o clase apex ...
  **/
@@ -91,3 +91,20 @@ for (Schema.RecordTypeInfo variable : recordTypeInfos) {
     System.debug('>>>>>'+variable.isDefaultRecordTypeMapping());
 }
 
+//?Aprendiendo de la clase DescribeFieldResult:
+Schema.DescribeFieldResult dfr = Account.Description.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dfr no iterable: '+dfr);
+Schema.DescribeFieldResult dfr = Opportunity.StageName.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dfr no iterable: '+dfr);
+Schema.DescribeFieldResult dfr = Developer__c.Manager__c.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dfr no iterable: '+dfr.isAccessible());
+
+//?Aprendiendo de la clase RecordTypeInfo:
+Schema.DescribeSObjectResult dsr = Account.SObjectType.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dsr: '+dsr);
+List<Schema.RecordTypeInfo> rti =dsr.getRecordTypeInfos();
+System.debug('>>>>>Imprime el valor del Objeto rti: '+rti);
+String developerName = rti[0].getDeveloperName();
+String recordtypeID = rti[0].getRecordTypeId();
+System.debug('>>>>>Imprime el valor del developerName: '+developerName);
+System.debug('>>>>>Imprime el valor del IDrECORD: '+recordtypeID);
