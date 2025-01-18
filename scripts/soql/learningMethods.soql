@@ -1,0 +1,13 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-17-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Usando y practicando methods de Salesforce
+**/
+Schema.DescribeFieldResult F = Account.Type.getDescribe();
+List<Schema.PicklistEntry> p = F.getPicklistValues();
+
+for (Schema.PicklistEntry valuePicklist : P) {
+    System.debug('Imprimiendo el valor del picklist: '+valuePicklist.getValue());
+}

@@ -1,0 +1,61 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-17-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Usando y probando class de Salesforce y el objeto Contact
+**/
+
+/**
+ * Aqui se muestra una query de como obtener un RecordType
+ */
+RecordType rt = [SELECT Id, Name 
+                    FROM RecordType 
+                    WHERE SObjectType = 'Contact' 
+                        AND DeveloperName = 'PartnerContact' 
+                        LIMIT 1];
+
+/**
+ * Aqui muestra un objeto o intacia de la clase Schema.DescribeSObjectResult
+ */
+Schema.DescribeSObjectResult result = Schema.SObjectType.Contact;
+System.debug('Imprimiendo el DescribeSObjectResult para Contact: '+result);
+
+/**
+ * Aqui se muestra el resultado de la propiedad getRecordTypeInfosByDeveloperName
+ */
+result.getRecordTypeInfosByDeveloperName();
+System.debug('Imprimiendo el resultado de getRecordTypeInfosByDeveloperName: '+result.getRecordTypeInfosByDeveloperName());
+
+/**
+ * Aqui se asigna el valor de la propiedad getRecordTypeInfosByDeveloperName a un MAPA
+ */
+Map<String, Schema.RecordTypeInfo>  a = result.getRecordTypeInfosByDeveloperName();
+System.debug('Imprimiendo el MAPA Map<String, Schema.RecordTypeInfo>: '+a);
+
+/**
+ * Aqui se asigna el valor de la propiedad getRecordTypeInfosById a un MAPA
+ */
+Map<Id, Schema.RecordTypeInfo>  mapId = result.getRecordTypeInfosById();
+System.debug('Imprimiendo el MAPA Map<Id, Schema.RecordTypeInfo>: '+mapId);
+
+/**
+ * Aqui se imprime el Schema.RecordTypeInfo  valor del mapa 'mapId' con la KEY 'rt.Id'
+ */
+Schema.RecordTypeInfo rtInfo = mapId.get(rt.Id);
+System.debug('Imprimiendo el RecordTypeInfo: '+rtInfo);
+
+/**
+ * Aqui se recorre el MAPA 'a' y se imprimen las KEYS y los VALUES
+ */
+for(String key : a.keySet()) {
+    System.debug('Imprimiendo la KEY: '+key);
+    Schema.RecordTypeInfo item = a.get(key);
+    System.debug('Imprimiendo el VALUE: '+item);
+    System.debug('Imprimiendo una propiedad de VALUE: '+item.isActive());
+}
+
+
+
+
+

@@ -1,0 +1,49 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-17-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Usando y probando class de Salesforce y el objeto Account
+**/
+/**
+ * Formas de instanciar la clase Schema.DescribeSObjectResult
+ */
+Schema.DescribeSObjectResult result01 = Schema.SObjectType.Account;
+System.debug('Imprimiendo el DescribeSObjectResult -01- para Account: '+result01);
+Schema.DescribeSObjectResult result02 = Account.SObjectType.getDescribe();
+System.debug('Imprimiendo el DescribeSObjectResult -02- para Account: '+result02);
+
+/**
+ * Se asigna a una LISTA despues se imprime el método getRecordTypeInfos() de la clase Schema.DescribeSObjectResult
+ */
+System.debug('Imprimiendo el getRecordTypeInfos para Account>>>>: '+result02.getRecordTypeInfos());
+List<Schema.RecordTypeInfo> recordTypeInfos = result02.getRecordTypeInfos();
+System.debug('Imprimiendo la longitud de recordTypeInfos:>>>> '+recordTypeInfos.size());
+String developerName = recordTypeInfos[0].getDeveloperName();
+System.debug('Imprimiendo el developerName:>>>> '+developerName);
+
+/**
+ * Se itera la lista recordTypeInfos
+ */
+for (Schema.RecordTypeInfo variable : recordTypeInfos) {
+    System.debug('>>'+variable.getDeveloperName());
+    System.debug('>>'+variable.getName());
+    System.debug('>>'+variable.getRecordTypeId());
+    System.debug('>>'+variable.isActive());
+    System.debug('>>'+variable.isAvailable() );
+    System.debug('>>'+variable.isMaster());
+    System.debug('>>'+variable.isDefaultRecordTypeMapping());
+}
+
+/**
+ * Ejercicio completo de Schema.DescribeSObjectResult
+ */
+Schema.DescribeSObjectResult result03 = Account.SObjectType.getDescribe();//-> retorna un objeto de tipo Schema.DescribeSObjectResult
+//Usando algunos de los métodos explícitos de la clase instanciada Schema.DescribeSObjectResult
+System.debug('Imprimiendo el getName: '+result03.getName());
+System.debug('Imprimiendo el getSObjectDescribeOption: '+result03.getSObjectDescribeOption());
+System.debug('Imprimiendo el getRecordTypeInfosByDeveloperName: '+result03.getRecordTypeInfosByDeveloperName());//-> retorna un mapa
+//Usando algunos de los métodos implicitos de la clase instanciada Schema.DescribeSObjectResult
+System.debug('Imprimiendo el getRecordTypeInfos()>>>>'+result03.getRecordTypeInfos());//-> retorna una lista
+System.debug('Imprimiendo el getRecordTypeInfosById()>>>>'+result03.getRecordTypeInfosById());//-> retorna un mapa
+System.debug('Imprimiendo el getRecordTypeInfosByName()>>>>'+result03.getRecordTypeInfosByName());//-> retorna un mapa
