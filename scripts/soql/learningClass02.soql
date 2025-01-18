@@ -42,8 +42,50 @@ Schema.DescribeSObjectResult result03 = Account.SObjectType.getDescribe();//-> r
 //Usando algunos de los métodos explícitos de la clase instanciada Schema.DescribeSObjectResult
 System.debug('Imprimiendo el getName: '+result03.getName());
 System.debug('Imprimiendo el getSObjectDescribeOption: '+result03.getSObjectDescribeOption());
-System.debug('Imprimiendo el getRecordTypeInfosByDeveloperName: '+result03.getRecordTypeInfosByDeveloperName());//-> retorna un mapa
+System.debug('Imprimiendo el getRecordTypeInfosByDeveloperName: '+result03.getRecordTypeInfosByDeveloperName());//-> retorna un mapa (Schema.RecordTypeInfo)
 //Usando algunos de los métodos implicitos de la clase instanciada Schema.DescribeSObjectResult
-System.debug('Imprimiendo el getRecordTypeInfos()>>>>'+result03.getRecordTypeInfos());//-> retorna una lista
-System.debug('Imprimiendo el getRecordTypeInfosById()>>>>'+result03.getRecordTypeInfosById());//-> retorna un mapa
-System.debug('Imprimiendo el getRecordTypeInfosByName()>>>>'+result03.getRecordTypeInfosByName());//-> retorna un mapa
+System.debug('Imprimiendo el getRecordTypeInfos()>>>>'+result03.getRecordTypeInfos());//-> retorna una lista (Schema.RecordTypeInfo)
+System.debug('Imprimiendo el getRecordTypeInfosById()>>>>'+result03.getRecordTypeInfosById());//-> retorna un mapa (Schema.RecordTypeInfo)
+System.debug('Imprimiendo el getRecordTypeInfosByName()>>>>'+result03.getRecordTypeInfosByName());//-> retorna un mapa (Schema.RecordTypeInfo)
+
+/**
+ * Usando getRecordTypeInfos()
+ */
+Schema.DescribeSObjectResult respuesta = Account.SObjectType.getDescribe();
+List<Schema.RecordTypeInfo> listRecordTypeInfos = respuesta.getRecordTypeInfos();
+for(Schema.RecordTypeInfo item : listRecordTypeInfos) {
+    System.debug('Imprimiendo el ITEM>>> '+item);
+}
+
+/**
+ * Usando getRecordTypeInfosByDeveloperName()
+ */
+Schema.DescribeSObjectResult respuesta = Account.SObjectType.getDescribe();
+Map<String, Schema.RecordTypeInfo> mapRecordTypeInfosByDeveloperName = respuesta.getRecordTypeInfosByDeveloperName();
+for(String key : mapRecordTypeInfosByDeveloperName.keySet()) {
+    Schema.RecordTypeInfo item = mapRecordTypeInfosByDeveloperName.get(key);
+    System.debug('Imprimiendo el KEY>>> '+key);
+    System.debug('Imprimiendo el ITEM>>> '+item);
+}
+
+/**
+ * Usando getRecordTypeInfosById()
+ */
+Schema.DescribeSObjectResult respuesta = Account.SObjectType.getDescribe();
+Map<Id, Schema.RecordTypeInfo> mapRecordTypeInfosById = respuesta.getRecordTypeInfosById();
+for(Id key : mapRecordTypeInfosById.keySet()) {
+    Schema.RecordTypeInfo item = mapRecordTypeInfosById.get(key);
+    System.debug('Imprimiendo el KEY>>> '+key);
+    System.debug('Imprimiendo el ITEM>>> '+item);
+}
+
+/**
+ * Usando getRecordTypeInfosByName()
+ */
+Schema.DescribeSObjectResult respuesta = Account.SObjectType.getDescribe();
+Map<String, Schema.RecordTypeInfo> mapRecordTypeInfosName = respuesta.getRecordTypeInfosByName();
+for(String key : mapRecordTypeInfosName.keySet()) {
+    Schema.RecordTypeInfo item = mapRecordTypeInfosName.get(key);
+    System.debug('Imprimiendo el KEY>>> '+key);
+    System.debug('Imprimiendo el ITEM>>> '+item);
+}
