@@ -16,3 +16,9 @@ System.debug('>>>>>Imprime el valor del dfr.isFormulaTreatNullNumberAsZero: '+df
 Schema.DescribeFieldResult dfr02 = Opportunity.Fecha_final_contrato__c.getDescribe();
 System.debug('>>>>>Imprime el valor del Objeto dfr: '+dfr02);
 System.debug('>>>>>Imprime el valor del dfr.isFormulaTreatNullNumberAsZero: '+dfr02.isFormulaTreatNullNumberAsZero());
+
+/**
+ * Usando la clase DescribeTabSetResult
+ */
+List<Schema.DescribeTabSetResult> listResult = Schema.describeTabs();
+System.debug('>>>>>Imprime el valor del Objeto listResult: '+listResult);
