@@ -1,0 +1,18 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-21-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Learnig about the Fundamentals of Salesforce Apex
+**/
+
+/**
+ * Usando la propiedad isFormulaTreatNullNumberAsZero de la clase Schema.DescribeFieldResult
+ */
+Schema.DescribeFieldResult dfr01 = Opportunity.Duracion_contrato_meses__c.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dfr: '+dfr01);
+System.debug('>>>>>Imprime el valor del dfr.isFormulaTreatNullNumberAsZero: '+dfr01.isFormulaTreatNullNumberAsZero());
+
+Schema.DescribeFieldResult dfr02 = Opportunity.Fecha_final_contrato__c.getDescribe();
+System.debug('>>>>>Imprime el valor del Objeto dfr: '+dfr02);
+System.debug('>>>>>Imprime el valor del dfr.isFormulaTreatNullNumberAsZero: '+dfr02.isFormulaTreatNullNumberAsZero());
