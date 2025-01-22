@@ -1,0 +1,17 @@
+/**
+ * @author            : Fernando M. Acosta P.
+ * @Equipo            : CRM
+ * @last modified on  : 01-21-2025
+ * @last modified by  : Fernando M. Acosta P.
+ * @Descripción       : Learning Escape Sequences and more
+**/
+
+/**
+ * Working with escape sequences
+ */
+List<Account> newAccountlist = [SELECT Id, Name FROM Account WHERE Name LIKE '%Burlington\'%'];
+System.debug('>>>>'+newAccountlist);
+List<Account> newAccountlist = [SELECT Id, Name FROM Account WHERE Name LIKE '%\"Madison\"%'];
+System.debug('>>>>'+newAccountlist);
+List<Account> newAccountlist = [SELECT Id, Name FROM Account WHERE Name LIKE '%\'Gas\'%'];
+System.debug('>>>>'+newAccountlist);
