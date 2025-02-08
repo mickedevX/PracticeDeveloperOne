@@ -1,0 +1,49 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-04-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-card title="Encriptar y Desencriptar Texto">
+        <div class="slds-m-around_medium">
+            <!-- Input para escribir el texto claro -->
+            <lightning-input 
+                label="Texto claro" 
+                onchange={handleEncrypt} 
+                placeholder="Escribe algo..." 
+                value={plainText}>
+            </lightning-input>
+
+            <!-- Muestra el texto encriptado -->
+            <lightning-textarea 
+                label="Texto encriptado (base64)" 
+                value={encryptedText} 
+                readonly>
+            </lightning-textarea>
+
+            <!-- Muestra el texto encriptado con criptoJS-->
+            <lightning-textarea 
+                label="Texto encriptado (CrytoJS)" 
+                value={encryptedTextcriptoJS} 
+                readonly>
+            </lightning-textarea>
+
+            <!-- Botón para desencriptar -->
+            <lightning-button 
+                label="Desencriptar" 
+                variant="brand" 
+                class="slds-m-top_medium"
+                onclick={handleDecrypt}>
+            </lightning-button>
+
+            <!-- Muestra el texto desencriptado -->
+            <lightning-input 
+                label="Texto desencriptado" 
+                value={decryptedText} 
+                readonly>
+            </lightning-input>
+        </div>
+    </lightning-card>
+</template>

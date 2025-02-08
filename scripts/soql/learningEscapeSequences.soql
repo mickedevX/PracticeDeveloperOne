@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 01-21-2025
+ * @last modified on  : 02-08-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Learning Escape Sequences and more
 **/
@@ -15,3 +15,6 @@ List<Account> newAccountlist = [SELECT Id, Name FROM Account WHERE Name LIKE '%\
 System.debug('>>>>'+newAccountlist);
 List<Account> newAccountlist = [SELECT Id, Name FROM Account WHERE Name LIKE '%\'Gas\'%'];
 System.debug('>>>>'+newAccountlist);
+
+
+SELECT Id, Name FROM Account WHERE Name LIKE '%\'Gas\'%'
