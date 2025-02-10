@@ -1,8 +1,0 @@
-/**
- * @author            : Fernando M. Acosta P.
- * @Equipo            : CRM
- * @last modified on  : 02-08-2025
- * @last modified by  : Fernando M. Acosta P.
- * @Descripción       : Componente o clase apex ...
-**/
-SELECT Id, EventType, CreatedDate, LogFile FROM EventLogFile
