@@ -1,0 +1,32 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-10-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<apex:page controller="MyFirstVisualForcePagw">
+
+    <h1>Conversor a Mayúsculas</h1>
+
+    <apex:form>
+        <apex:inputText id="mensajeInput"  value="{!mensaje}"  onkeyup="actualizarContador(this)" />
+        <p># Caracteres usando VSFP: {!LEN(mensaje)}</p>
+        <p id ='contador'>Caracteres: 0/20</p>
+        <apex:outputPanel rendered="{!LEN(mensaje)>=20}">
+            <p style="color:red; font-weight:bold;">⚠️ Has alcanzado el límite de 10 caracteres.</p>
+        </apex:outputPanel>
+
+        <apex:commandButton value="Actualizar el mensaje" action="{!actualizarMensaje}"></apex:commandButton>
+        <apex:commandButton value="Cambiar a mayusculas" action="{!cambiarMayusculas}" disabled="{!mensaje==''}"></apex:commandButton>
+        <apex:commandButton value="limpiar" action="{!limpiarMensaje}" disabled="{!mensaje == ''}"></apex:commandButton>
+    </apex:form>
+
+    <apex:outputPanel rendered="{!mensajeExito != ''}">
+        <p style="color:green; font-weight:bold;">{!mensajeExito}</p>
+    </apex:outputPanel>
+
+    <!-- Importar script externo -->
+    <apex:includeScript value="{!URLFOR($Resource.contadorMensaje)}" />
+
+</apex:page>
