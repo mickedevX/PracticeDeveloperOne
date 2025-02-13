@@ -1,0 +1,79 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-12-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<apex:page controller="LearningApexClassController">
+    <script type="text/javascript">
+        function llamarSaludo() {
+            var nombre = document.getElementById('nombreInput').value;
+
+            // Llamamos al método Apex con JavaScript Remoting
+            LearningApexClassController.saludar(nombre, function (resultado, estado) {
+                if (estado.status === true) {
+                    document.getElementById('resultado').innerText = resultado;
+                } else {
+                    console.log("Error al llamar el método Apex");
+                    console.error('Estado: ' + JSON.stringify(estado));
+                }
+            }, { escape: false });
+        }
+
+        function llamarSaludoMultiple() {
+            var nombres = document.getElementById('namesInput').value.split(',');
+
+            LearningApexClassController.saludarMultiples(nombres, function (result, estado) {
+                console.log('result>>> ' + result);
+                if (estado.status === true) {
+                    document.getElementById('resultados').innerHTML = result.join('<br>');
+                } else {
+                    console.error("Error al llamar el método Apex");
+                    console.error("Estado: ", JSON.stringify(estado));
+                }
+            }, { escape: false });
+        }
+
+        function llamarSaludosPersonas() {
+            let inputText = document.getElementById('dataInput').value;
+            let personasArray = inputText.split(',').map(function (item) {
+                let partes = item.trim().split('-');
+                return { nombre: partes[0], edad: parseInt(partes[1]) };
+            });
+
+            LearningApexClassController.handleSaludos(personasArray, function (respuesta, status) {
+                if (status.status === true) {
+                    if (respuesta.error) {
+                        document.getElementById('dataOutput').innerHTML = "<span style='color: red;'>" + respuesta.mensaje + "</span>";
+                    } else {
+                        document.getElementById('dataOutput').innerHTML = respuesta.join('<br>');
+                    }
+                } else {
+                    console.error("Error al llamar el método apex!.");
+                    console.error("Estado: " + JSON.stringify(status));
+                }
+
+            }, { escape: false });
+        }
+    </script>
+
+    <h2>Ejemplo de RemoteAction</h2>
+    <input type="text" id="nombreInput" placeholder="Ingresa tu nombre" />
+    <button onclick="llamarSaludo()">Saludar</button>
+
+    <p id="resultado"></p>
+
+
+    <h2>Ejemplo de RemoteAction con múltiples nombres</h2>
+    <input type="text" id="namesInput" placeholder="Ingresa nombres separados por comas" />
+    <button onclick="llamarSaludoMultiple()">Saludar</button>
+
+    <p id="resultados"></p>
+
+    <h2>Ejemplo de RemoteAction con objetos</h2>
+    <input type="text" id="dataInput" placeholder="Ingresa nombres y edades (Ej: Juan-25, María-30)" />
+    <button onclick="llamarSaludosPersonas()">Saludar</button>
+
+    <p id="dataOutput"></p>
+</apex:page>
