@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 02-12-2025
+ * @last modified on  : 02-13-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Clase apex para crear ejercicios de prueba
  **/
@@ -76,5 +76,39 @@ public with sharing class LearningApexClassController {
         }
         
     }
+    
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> obtenerContactos(){
+        try {
+            System.debug('request>>>>'+
+                [
+                    SELECT Id, Name, Title, Phone, Email
+                    FROM Contact
+                    WHERE Email != null]);
+            return [
+                SELECT Id, Name, Title,Phone, Email
+                FROM Contact
+                WHERE Email != null
+                WITH SECURITY_ENFORCED
+                LIMIT 10
+            ];
+        } catch (Exception e) {
+            throw new AuraHandledException('ERROR>>>> '+e.getMessage()+e.getStackTraceString());
+        }
+    }
+    
+    
+    @AuraEnabled
+    public static List<Contact> findContactos(String searchKey) {
+        String key = '%' + searchKey + '%';
+        return [
+            SELECT Id, Name, Title, Phone,Email
+            FROM Contact
+            WHERE Name LIKE :key
+            WITH SECURITY_ENFORCED
+            LIMIT 10
+        ];
+    }
+
     
 }

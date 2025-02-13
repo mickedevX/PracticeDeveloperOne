@@ -1,0 +1,52 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-13-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-card  title="Calling Imperative Methods" icon-name="standard:actions_and_buttons">
+        <lightning-button 
+            class="slds-var-p-around_medium" 
+            label="Cargar contactos" 
+            slot="actions"
+            variant="brand"
+            onclick={handleLoadContacts}>
+        </lightning-button>
+        <div class="slds-var-p-horizontal_x-small slds-var-p-vertical_x-small">
+            <template lwc:if={contactos}>
+                <template for:each={contactos} for:item="contacto">
+                    <p class="slds-var-p-horizontal_x-small slds-var-p-vertical_x-small" key={contacto.Id}>{contacto.Name}</p>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+    <lightning-card title="Calling Imperative Methods with Parameters" icon-name="standard:account">
+        <div class="slds-grid slds-gutters">
+            <!-- Componente Buscador -->
+            <div onkeyup={handleKeyChange} class="slds-col">
+                <lightning-input
+                    class="slds-var-p-horizontal_x-small slds-var-p-vertical_x-small"
+                    name="enter-search"
+                    label="Ingrese un nombre de contacto"
+                    type="search"
+                ></lightning-input>
+            </div>
+            <lightning-button 
+            class="slds-var-p-around_medium slds-col" 
+            label="Buscar Contactos" 
+            slot="actions"
+            variant="brand"
+            onclick={handleSearch}>
+            </lightning-button>
+        </div>
+        <div class="slds-var-p-horizontal_x-small slds-var-p-vertical_x-small">
+            <template lwc:if={findedContactos}>
+                <template for:each={findedContactos} for:item="contacto">
+                    <p class="slds-var-p-horizontal_x-small slds-var-p-vertical_x-small" key={contacto.Id}>{contacto.Name}</p>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
