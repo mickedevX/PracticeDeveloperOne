@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="dataSendTunnel" type="String"/>
+</aura:event>

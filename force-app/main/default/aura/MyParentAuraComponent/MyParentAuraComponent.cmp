@@ -1,0 +1,14 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-18-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="mensajeRecibido" type="String"/>
+    <c:MyChildAuraComponent eventFromChild="{!c.handleDataEvent}"/>
+
+    <p>Message from Child: {!v.mensajeRecibido}</p>
+
+</aura:component>

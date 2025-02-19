@@ -1,0 +1,16 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-18-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente MyAuraPracticeComponent.
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:attribute name="mensaje" type="string" default="Hola AURA!!!"/>
+<aura:attribute name="colorFondo" type="string" default="white"/>
+<lightning:button 
+      variant="brand"
+      label="Cambiar mensaje"
+      onclick="{!c.cambiarMensaje}"/>
+    <p style="{!'background-color:'+v.colorFondo + '; padding:10px;'}">{!v.mensaje}</p>
+</aura:component>
