@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 02-13-2025
+ * @last modified on  : 02-20-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Clase apex para crear ejercicios de prueba
  **/
@@ -108,6 +108,12 @@ public with sharing class LearningApexClassController {
             WITH SECURITY_ENFORCED
             LIMIT 10
         ];
+    }
+
+    //Método usado para trabajar con Aura components
+    @AuraEnabled
+    public static Integer multiplicarEnteros(Integer a, Integer b) {
+        return a * b;
     }
 
     

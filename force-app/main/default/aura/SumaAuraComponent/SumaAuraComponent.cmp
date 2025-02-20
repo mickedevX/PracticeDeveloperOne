@@ -1,0 +1,32 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-20-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<aura:component 
+    implements="force:appHostable,
+    flexipage:availableForAllPageTypes,
+    flexipage:availableForRecordHome,
+    force:hasRecordId,
+    forceCommunity:availableForAllPageTypes,
+    force:lightningQuickAction"
+    controller="LearningApexClassController"
+    access="global">
+    <!-- Atributos -->
+     <aura:attribute name="num1" type="Integer"/>
+     <aura:attribute name="num2" type="Integer"/>
+     <aura:attribute name="result" type="Integer"/>
+     <aura:attribute name="producto" type="Integer"/>
+
+     <!-- Interfaz de usuario -->
+      <lightning:input label="Ingreso un número" value="{!v.num1}" name="num1"/>
+      <lightning:input label="Ingreso un número" value="{!v.num2}" name="num2"/>
+      <lightning:button label="Sumar" onclick="{!c.sumar}" variant="brand"/>
+      <lightning:button label="Multiplicar" onclick="{!c.multiplicar}" variant="brand"/>
+
+      <p>Resultado: {!v.result}</p>
+      <p>Resultado de la multipliación: {!v.producto}</p>
+
+</aura:component>
