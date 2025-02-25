@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 02-03-2025
+ * @last modified on  : 02-20-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Componente o clase apex ...
  **/
@@ -10,14 +10,25 @@ public with sharing class EncryptService {
     @AuraEnabled(cacheable=false)
     public static String decryptText(String encryptedText) {
         try {
+            // Obtener la clave y IV desde el Custom Metadata Type
+            EncryptionConfig__mdt config = [
+                            SELECT Key__c, IV__c FROM EncryptionConfig__mdt 
+                            WHERE DeveloperName = 'DefaultConfig' LIMIT 1
+                        ];
+            
+            // Validar que la clave y el IV sean de 16 bytes
+            if (String.isEmpty(config.Key__c) || String.isEmpty(config.IV__c) ||
+            config.Key__c.length() != 16 || config.IV__c.length() != 16) {
+                throw new SecurityException('Clave o IV inválidos en EncryptionConfig__mdt');
+            }
             // Decodificar el texto cifrado desde Base64
             Blob textCifrado = EncodingUtil.base64Decode(encryptedText);
             
-            // Clave AES-128 (16 bytes)
-            Blob key = Blob.valueOf('1234567890123456'); // EXACTAMENTE 16 caracteres
-            
-            // IV (16 bytes)
-            Blob iv = Blob.valueOf('1234567890123456'); // EXACTAMENTE 16 caracteres
+            // Convertir la clave y el IV a Blob
+            Blob key = Blob.valueOf(config.Key__c);
+            Blob iv = Blob.valueOf(config.IV__c);
+            System.debug('Key Length: ' + config.Key__c.length());
+            System.debug('IV Length: ' + config.IV__c.length());
             
             // Desencriptar el texto
             Blob decryptedBlob = Crypto.decrypt('AES128', key, iv, textCifrado);

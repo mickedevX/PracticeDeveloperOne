@@ -1,0 +1,28 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 02-20-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <div class="main-container">
+        <input 
+            type="text"
+            placeholder="Escribe tu cédula"
+            value={valCedula}
+            name="cedula" 
+            label="Cedula"
+            onchange={handleChange}/>   
+        
+        <input 
+            type="text" 
+            placeholder="Escribe tu celular"
+            value={valCelular}
+            name="celular"
+            lang="Celular"
+            onchange={handleChange}/>
+
+        <button onclick={sendData}>Enviar datos</button>
+    </div>
+</template>
