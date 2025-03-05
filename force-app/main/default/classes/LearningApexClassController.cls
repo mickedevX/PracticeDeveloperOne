@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 02-20-2025
+ * @last modified on  : 03-04-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Clase apex para crear ejercicios de prueba
  **/
@@ -110,11 +110,33 @@ public with sharing class LearningApexClassController {
         ];
     }
 
-    //Método usado para trabajar con Aura components
+    //Méthods to use in Aura component 
     @AuraEnabled
     public static Integer multiplicarEnteros(Integer a, Integer b) {
         return a * b;
     }
 
+    @AuraEnabled
+    public static Double dividirNumeros(Double x, Double y) {
+        if (y == 0) {
+            throw new AuraHandledException('No se puede dividir por cero.');
+        }
+        return x / y;
+    }
+    //Methods to use in Aura Component
+    @AuraEnabled
+    public static Integer obtenerNuevoPrecio() {
+        try {
+            Decimal[] precios = new Decimal[]{1200.00, 1400.00, 1600.00, 1800.00, 2000.00};
+            
+            // Convertir el resultado a Integer
+            Integer index = (Integer) Math.mod(Math.abs(DateTime.now().getTime()), precios.size());
+            
+            // Retorna el valor de la lista convertido a Integer
+            return (Integer) precios[index];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     
 }

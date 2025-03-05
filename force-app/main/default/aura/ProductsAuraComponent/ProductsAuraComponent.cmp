@@ -1,0 +1,31 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 03-04-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente aura para el cálculo del valor de productos comerciales
+-->
+<aura:component
+implements="force:appHostable,
+flexipage:availableForAllPageTypes,
+flexipage:availableForRecordHome,
+force:hasRecordId,
+forceCommunity:availableForAllPageTypes,
+force:lightningQuickAction"
+controller="LearningApexClassController"
+access="global">
+
+<!-- Atributos -->
+<aura:attribute name="nameProduct" type="String" default="Laptop"/>
+<aura:attribute name="priceProduct" type="Decimal" default="1200"/>
+
+<!-- Interface de usuario -->
+    <div aura:id="mainContainer">
+        <h2>{!v.nameProduct}</h2>
+        <p>Precio: ${!v.priceProduct}</p>
+
+        <lightning:button label="Cambiar Precio" onclick="{!c.changePrice}"/>
+    </div>
+
+
+</aura:component>

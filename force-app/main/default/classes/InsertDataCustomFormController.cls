@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 02-24-2025
+ * @last modified on  : 03-01-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Componente o clase apex ...
  **/
@@ -12,7 +12,6 @@ public with sharing class InsertDataCustomFormController {
             throw new AuraHandledException('La data encriptada es requerida');
         }
         try {
-
              // Desencriptar el JSON completo
              String decryptedJson = EncryptionConfigController.decryptText(encryptedData);
 
