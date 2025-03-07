@@ -1,3 +1,5 @@
 <design:component >
-
+    <!-- Atributos -->
+    <design:attribute name="nameProduct" label="Nombre del producto"/>
+    <!-- <design:attribute name="priceProduct" label="Precio del producto"/> -->
 </design:component>
