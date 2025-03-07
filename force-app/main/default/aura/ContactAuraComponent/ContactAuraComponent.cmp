@@ -1,0 +1,48 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 03-07-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<aura:component 
+    implements="
+     flexipage:availableForAllPageTypes,
+     force:hasRecordId,
+     force:appHostable"
+    access="global">
+
+    <!-- atributos -->
+    <!-- atributo para el id del registro -->
+    <aura:attribute name="recordId" type="String"/>
+    <!-- atributo que contiene al contacto -->
+    <aura:attribute name="contactRecord" type="Object"/>
+    <!-- atributo para controlar el estado de carga -->
+    <aura:attribute name="recordSaveError" type="String"/>
+
+    <!-- interfaz grafica -->
+     <div class="slds-box">
+        <h2 class="slds-text-heading_medium">Formulario de Contacto</h2>
+
+        <lightning:input label="First Name" value="{!v.contactRecord.FirstName}"/>
+        <lightning:input label="Last Name" value="{!v.contactRecord.LastName}"/>
+        <lightning:input label="Email" value="{!v.contactRecord.Email}"/>
+
+        <div class="slds-var-m-top_medium">
+            <lightning:button variant="brand" label="Guardar" onclick="{!c.saveContact}"/>
+            <aura:if isTrue="{!not(empty(v.recordSaveError))}">
+                <div class="slds-text-color_error">{!v.recordSaveError}</div>
+            </aura:if>
+        </div>
+     </div>
+
+     <!-- se declara force:recordData para leer, crear o actualizar -->
+      <force:recordData
+        aura:id="recordData"
+        recordId="{!v.recordId}"
+        fields="FirstName,LastName,Email"
+        targetFields="{!v.contactRecord}"
+        mode="EDIT"
+        recordUpdated="{!c.handleRecordUpdated}"
+      />
+</aura:component>
