@@ -1,0 +1,90 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 06-28-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-card title="Buscador Global">
+        <div class="slds-m-around_medium">
+            <lightning-input 
+                label="Buscar"
+                value={searchTerm}
+                onchange={handleInputChange}
+                placeholder="Ingrese un texto para buscar...">
+            </lightning-input>
+            <lightning-button 
+                class="slds-m-top_small"
+                label="Buscar"
+                onclick={handleSearch}
+                variant="brand">
+            </lightning-button>
+        </div>
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Buscando..." size="small"></lightning-spinner>
+        </template>
+
+        <!-- Accounts -->
+        <template if:true={accounts}>
+            <h3 class="slds-m-top_medium">Accounts encontrados</h3>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr><th>Nombre</th></tr>
+                </thead>
+                <tbody>
+                    <template for:each={accounts} for:item="acc">
+                        <tr key={acc.Id}>
+                            <td>{acc.Name}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+
+        <!-- Contacts -->
+        <template if:true={contacts}>
+            <h3 class="slds-m-top_medium">Contacts encontrados</h3>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={contacts} for:item="con">
+                        <tr key={con.Id}>
+                            <td>{con.FirstName}</td>
+                            <td>{con.LastName}</td>
+                            <td>{con.Email}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+
+        <!-- Opportunities -->
+        <template if:true={oportunidades}>
+            <h3 class="slds-m-top_medium">Oportunidades encontradas</h3>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={oportunidades} for:item="opp">
+                        <tr key={opp.Id}>
+                            <td>{opp.Name}</td>
+                            <td>{opp.StageName}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+    </lightning-card>
+</template>
