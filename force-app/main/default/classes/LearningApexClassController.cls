@@ -1,7 +1,7 @@
 /**
  * @author            : Fernando M. Acosta P.
  * @Equipo            : CRM
- * @last modified on  : 03-04-2025
+ * @last modified on  : 06-30-2025
  * @last modified by  : Fernando M. Acosta P.
  * @Descripción       : Clase apex para crear ejercicios de prueba
  **/
@@ -134,6 +134,20 @@ public with sharing class LearningApexClassController {
             
             // Retorna el valor de la lista convertido a Integer
             return (Integer) precios[index];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    //Method para aprender a crear dropdown para uso en LWC
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccountsToDropDown(){
+        try {
+            return [SELECT Id, Name, AnnualRevenue
+                    FROM Account 
+                    WITH SECURITY_ENFORCED
+                    ORDER BY Name 
+                    LIMIT 30];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

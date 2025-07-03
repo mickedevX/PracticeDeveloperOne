@@ -1,0 +1,19 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 06-28-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-card title="Lightning Record Form" variant="base">
+      <template if:true={isProcessing}>
+          <!-- Card Body  -->
+          <lightning-record-form
+              object-api-name="Account"
+              record-id={recordId}
+              mode="edit"
+              layout-type="Full"></lightning-record-form>
+      </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,45 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 06-30-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+<lightning-card icon-name="standard:account" variant="base">
+  <div slot="title">
+      Detalle del account
+  </div>
+
+  <div class="slds-var-m-around_medium">
+   <lightning-combobox
+     name="accountDropDown"
+     label="Seleccione una cuenta"
+     value={selectedAccountId}
+     placeholder="Elige una cuenta para ver sus detalles"
+     options={options}
+     onchange={handleEvent} 
+   ></lightning-combobox>
+  </div>
+
+  <template if:true={selectedAccountId}>
+     <lightning-record-view-form
+         object-api-name="Account"
+         record-id={selectedAccountId}
+     >
+     <div class="slds-var-m-bottom_small">
+        <label class="slds-form-element__label">Nombre</label>
+        <lightning-output-field field-name="Name"></lightning-output-field>
+     </div>
+     <div class="slds-var-m-bottom_small">
+        <label class="slds-form-element__label">Telefono</label>
+        <lightning-output-field field-name="Phone"></lightning-output-field>
+     </div>
+     <div class="slds-var-m-bottom_small">
+        <label class="slds-form-element__label">Ingresos anuales</label>
+        <lightning-output-field field-name="AnnualRevenue"></lightning-output-field>
+     </div>
+     </lightning-record-view-form>
+  </template>
+</lightning-card>
+</template>

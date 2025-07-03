@@ -1,0 +1,25 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 07-02-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-card icon-name="standard:account" variant="base">
+      <div slot="title">
+          Cuenta desde LWC con @wire
+      </div>
+      <div>
+        <!-- Card Body  -->
+        <template if:true={account.data}>
+            <p><b>Nombre: </b>{name}</p>
+            <p><b>Teléfono: </b>{phone}</p>
+            <p><b>Ingresos Anuales: </b>{revenue}</p>
+        </template>
+        <template if:true={account.error}>
+            <p style="color:red">Error al cargar la cuenta: {account.error.message}</p>
+        </template>
+      </div>
+    </lightning-card>
+</template>

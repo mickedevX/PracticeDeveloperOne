@@ -1,0 +1,41 @@
+<!--
+  @author            : Fernando M. Acosta P.
+  @Equipo            : CRM
+  @last modified on  : 07-02-2025
+  @last modified by  : Fernando M. Acosta P.
+  @Descripción       : Componente o clase apex ...
+-->
+<template>
+    <lightning-record-edit-form
+      density="compact"
+      object-api-name="Account"
+      record-id={recordId}
+      onsuccess={handleSuccess}
+      onerror={handleError}
+    >
+
+    <lightning-input-field 
+      field-name="Name"
+      variant="standard"
+    ></lightning-input-field>
+
+    <lightning-input-field 
+      field-name="Phone"
+      variant="standard"
+    ></lightning-input-field>
+
+    <lightning-input-field 
+      field-name="AnnualRevenue"
+      variant="standard"
+    ></lightning-input-field>
+
+    <div>
+        <lightning-button 
+          class="slds-var-m-right_small"
+          variant="brand"
+          label="Guardar"
+          type="submit" 
+        ></lightning-button>
+    </div>
+    </lightning-record-edit-form>
+</template>
